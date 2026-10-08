@@ -8,11 +8,12 @@ A API usa Express e conecta diretamente ao PostgreSQL gerenciado pelo Supabase c
 
 1. Crie um projeto no painel do Supabase.
 2. No painel, abra **Connect** e copie a URL de conexao **Session pooler** para um backend persistente quando a rede local for IPv4. Use a URL mostrada pelo painel; substitua a senha e codifique caracteres especiais dela.
-3. Copie `server/.env.example` para `server/.env` e coloque essa URL em `DATABASE_URL`. O exemplo exige conexão SSL e usa a compatibilidade do driver `pg`; antes de produção, configure a CA do Supabase para verificar o certificado do servidor. Nunca envie `server/.env` ao Git.
-4. Na raiz do repositorio, execute `npm install` para instalar a Supabase CLI. Na pasta `server`, execute `npm install` para instalar as dependencias da API.
-5. Na raiz, autentique a CLI com `npx supabase login` e vincule o projeto com `npm run db:link`.
-6. Revise as migracoes pendentes com `npm run db:status`. Quando estiver pronto para criar as tabelas no projeto remoto, execute `npm run db:push`.
-7. Inicie a API dentro de `server` com `npm run dev`. A rota `GET /api/health` verifica a conexao com o banco.
+3. Em **Database > Settings > SSL Configuration**, baixe o certificado raiz do projeto e salve-o como `server/supabase-root.crt`.
+4. Copie `server/.env.example` para `server/.env` e configure `DATABASE_URL` com a URL de sessão copiada do painel, sem parâmetros SSL na query string. Configure `DATABASE_SSL_CA_PATH=./supabase-root.crt`. A API exige o certificado e valida a cadeia TLS; sem ele, não inicia. Nunca envie `server/.env` ao Git.
+5. Na raiz do repositorio, execute `npm install` para instalar a Supabase CLI. Na pasta `server`, execute `npm install` para instalar as dependencias da API.
+6. Na raiz, autentique a CLI com `npx supabase login` e vincule o projeto com `npm run db:link`.
+7. Revise as migracoes pendentes com `npm run db:status`. Quando estiver pronto para criar as tabelas no projeto remoto, execute `npm run db:push`.
+8. Inicie a API dentro de `server` com `npm run dev`. A rota `GET /api/health` verifica a conexao com o banco.
 
 A migracao remota e uma alteracao no banco Supabase. O projeto Cakes Borges esta vinculado ao projeto `cakes_borges`; antes de aplicar futuras migracoes, confira `npm run db:status` para confirmar o destino e revisar o que sera aplicado.
 
@@ -28,7 +29,7 @@ No desenvolvimento local, o Vite encaminha `/api` para `http://localhost:3001`. 
 
 1. Na raiz, copie `.env.example` para `.env.local` e preencha `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` com o Project URL e a chave publicavel/anon do mesmo projeto Supabase. Essa chave e feita para o navegador; nunca use `service_role` ou uma secret key no frontend.
 2. Em `server/.env`, preencha tambem `SUPABASE_URL` e `SUPABASE_ANON_KEY` com os mesmos valores. A senha do PostgreSQL continua apenas em `DATABASE_URL` no servidor.
-   Para habilitar a gestão de pedidos, configure `ORDER_MANAGER_EMAILS` com o e-mail exato da conta autorizada. Separe vários e-mails por vírgula. Essa permissão é conferida pelo backend e nunca deve ser colocada em `user_metadata` editável pelo cliente.
+   Para habilitar a gestão de pedidos, configure `ORDER_MANAGER_USER_IDS` com os UUIDs das contas autorizadas no Supabase Auth, separados por vírgula. Obtenha cada UUID no painel Supabase em **Authentication > Users**. A permissão é conferida no backend por ID imutável; não use e-mail nem metadados editáveis pelo cliente para conceder esse acesso.
 3. No painel Supabase, confira as configuracoes de Auth por e-mail e a URL permitida para desenvolvimento (`http://localhost:5173`). Se confirmacao de e-mail estiver ativa, o cliente precisa abrir o link enviado antes de entrar.
 4. Reinicie a API e o Vite depois de editar os arquivos de ambiente.
 
@@ -36,7 +37,7 @@ O servidor valida o bearer token no Supabase Auth e associa a conta a `usuario.a
 
 O checkout exige login, registra pedido e itens com snapshot dos precos, endereco de entrega quando aplicavel e status de pagamento `PENDENTE` via Pix. Nao ha cobranca, confirmacao automatica ou chave Pix configurada. `DELIVERY_FEE` fica como `0` ate a loja definir a taxa; confirme a taxa com a pessoa antes de receber pedidos reais. Os precos e produtos atuais sao demonstrativos.
 
-O cliente acompanha o status e o histórico no painel da conta e pode atualizar a lista manualmente. A equipe autorizada em `ORDER_MANAGER_EMAILS` pode confirmar o Pix recebido, avançar o pedido (confirmado, em preparo, pronto e concluído) ou cancelá-lo. As mudanças e observações são registradas em `pedido_status_historico`. As tabelas públicas seguem com RLS ativada e sem acesso direto do navegador; as rotas privadas da API verificam a sessão, filtram os pedidos do cliente pela própria conta e protegem as operações da equipe por uma lista privada do servidor.
+O cliente acompanha o status e o histórico no painel da conta e pode atualizar a lista manualmente. A equipe autorizada em `ORDER_MANAGER_USER_IDS` pode confirmar o Pix recebido, avançar o pedido (confirmado, em preparo, pronto e concluído) ou cancelá-lo. As mudanças e observações são registradas em `pedido_status_historico`. As tabelas públicas seguem com RLS ativada e sem acesso direto do navegador; as rotas privadas da API verificam a sessão, filtram os pedidos do cliente pela própria conta e protegem as operações da equipe por uma lista privada do servidor.
 
 ## Migracoes
 

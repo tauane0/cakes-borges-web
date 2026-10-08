@@ -273,10 +273,10 @@ const orderStatusNotes = {
 };
 
 function isOrderManager(request) {
-  return env.orderManagerEmails.has(String(request.authUser?.email || '').trim().toLowerCase());
+  return env.orderManagerUserIds.has(String(request.authUser?.id || '').trim().toLowerCase());
 }
 
-// A gestão retorna apenas pedidos recentes e só para e-mails autorizados no ambiente do servidor.
+// A gestão retorna apenas pedidos recentes e só para UUIDs autorizados no ambiente do servidor.
 accountRouter.get('/orders/manage', async (request, response, next) => {
   if (!isOrderManager(request)) return response.status(403).json({ error: 'Acesso restrito à equipe da loja.' });
   try {

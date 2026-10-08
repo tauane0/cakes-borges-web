@@ -9,6 +9,10 @@ const { Pool } = pg;
 // Uma única pool reutilizada pela API evita abrir uma conexão nova em cada requisição.
 export const pool = new Pool({
   connectionString: env.databaseUrl,
+  ssl: {
+    ca: env.databaseSslCa,
+    rejectUnauthorized: true,
+  },
   max: 10,
   idleTimeoutMillis: 30_000,
   // Supabase pode demorar alguns segundos para aceitar novas conexoes; evita timeout falso em rede lenta.

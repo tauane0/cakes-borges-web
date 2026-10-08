@@ -3,8 +3,8 @@
 Data: 2026-10-07
 
 Escopo: revisao estatica do codigo e dos arquivos rastreados no commit inicial
-publicado em `main`. Nenhuma alteracao foi feita no codigo da aplicacao ou no
-projeto Supabase remoto.
+publicado em `main`, com correcoes locais subsequentes. Nenhuma alteracao foi
+feita no projeto Supabase remoto.
 
 ## Resumo
 
@@ -12,42 +12,36 @@ Nao foram encontrados segredos reais ou dados de producao rastreados no commit
 revisado. Os arquivos de ambiente versionados sao exemplos com valores
 placeholder, e os arquivos `.env` sao ignorados pelo Git.
 
-Foram identificados dois riscos de severidade media no codigo. A revisao do
-repositorio, sozinha, nao confirma as configuracoes efetivas de Auth, TLS,
-grants, Data API ou a aplicacao das migrations no projeto Supabase remoto.
+Foram identificados dois riscos de severidade media no codigo. As correcoes
+locais agora exigem verificacao TLS com CA configurada e autorizam a equipe por
+UUID. A revisao do repositorio, sozinha, nao confirma a configuracao efetiva
+nem a implantacao no ambiente de producao.
 
 ## Achados
 
-### MEDIO — Conexao PostgreSQL sem verificacao do certificado indicada no exemplo
+### MEDIO — Conexao PostgreSQL sem verificacao do certificado indicada no exemplo (corrigido no codigo)
 
-- Arquivos: `server/.env.example` (linhas 7-8) e `server/src/db/pool.js`
-  (linhas 7-12).
-- O exemplo orienta usar `sslmode=require`, enquanto o comentario diz para
-  configurar a CA em producao, mas nao mostra uma configuracao de verificacao
-  do certificado. O pool passa a URL de conexao diretamente para o driver.
-- Se a conexao efetiva em producao usar essa configuracao sem validar o
-  certificado, a criptografia da conexao nao garante que o servidor remoto e o
-  Supabase esperado; um intermediario de rede poderia se passar pelo servidor.
-- Recomendacao: validar o certificado TLS usando a CA confiavel do Supabase e
-  confirmar que a configuracao efetiva de producao nao desativa essa validacao.
-- Confianca: 9/10. A configuracao real de producao nao foi verificada.
+- Arquivos originalmente envolvidos: `server/.env.example` e
+  `server/src/db/pool.js`.
+- O pool agora configura `rejectUnauthorized: true` com a CA apontada por
+  `DATABASE_SSL_CA_PATH`, e o processo falha se a CA estiver ausente ou nao for
+  um certificado PEM.
+  Parametros TLS na URL tambem sao rejeitados para impedir que substituam as
+  opcoes explicitas do driver.
+- Para conectar, cada ambiente ainda precisa receber a CA raiz correta do
+  projeto Supabase. A configuracao efetiva de producao nao foi verificada.
+- Confianca inicial: 9/10. A configuracao real de producao nao foi verificada.
 
-### MEDIO — Autorizacao da equipe baseada apenas no endereco de e-mail
+### MEDIO — Autorizacao da equipe baseada apenas no endereco de e-mail (corrigido no codigo)
 
-- Arquivos: `server/src/middleware/auth.js` (linhas 18-20) e
-  `server/src/routes/account.routes.js` (linhas 275-296).
-- O middleware exige um usuario autenticado com `id` e `email`. A autorizacao
-  das rotas de gestao compara o e-mail da sessao com a lista
-  `ORDER_MANAGER_EMAILS`; nao verifica um papel de equipe ou um identificador
-  imutavel autorizado.
-- Se um endereco listado nao estiver vinculado a uma conta legitima e as
-  configuracoes de Auth permitirem registrar/verificar esse endereco, alguem
-  poderia obter acesso de gestao. As rotas permitem consultar dados de clientes
-  e alterar estados de pedidos e pagamentos.
-- Recomendacao: autorizar por UUID de usuario provisionado ou por papel
-  confiavel em `app_metadata`, e revisar a politica de confirmacao de e-mail e
-  o provisionamento de contas de equipe.
-- Confianca: 8/10. A possibilidade de exploracao depende das configuracoes
+- Arquivos originalmente envolvidos: `server/src/middleware/auth.js` e
+  `server/src/routes/account.routes.js`.
+- As rotas de gestao agora comparam o UUID autenticado com
+  `ORDER_MANAGER_USER_IDS`, uma lista server-side de IDs validada na inicializacao.
+- A lista ainda precisa ser preenchida com os UUIDs corretos em cada ambiente.
+  Essa revisao nao verificou a configuracao de producao nem o provisionamento
+  das contas de equipe.
+- Confianca inicial: 8/10. A possibilidade de exploracao depende das configuracoes
   reais de Auth e das contas existentes, que nao foram verificadas.
 
 ## Observacoes sobre o banco

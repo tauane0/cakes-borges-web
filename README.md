@@ -87,5 +87,5 @@ npm run build
 - Arquivos `.env`, `.env.local` e `server/.env` sao locais e ignorados pelo Git.
 - Os arquivos `.env.example` contem apenas valores de exemplo e devem ser preenchidos localmente.
 - Configure URLs de redirecionamento do Supabase Auth para o endereco local e para o dominio de producao quando houver hospedagem.
-- Restrinja a gestao de pedidos a contas de funcionarios configuradas em `ORDER_MANAGER_EMAILS` no ambiente da API.
+- Restrinja a gestao de pedidos a contas de funcionarios configuradas por UUID em `ORDER_MANAGER_USER_IDS` no ambiente da API.
 - Antes de uma operacao real, defina precos, disponibilidade, taxa de entrega, prazo, endereco de retirada e processo de confirmacao do Pix.
