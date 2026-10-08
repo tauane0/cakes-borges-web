@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:wght@600;700&display=swap');
+
+/* =========================
+   CONFIGURAÇÕES GLOBAIS
+========================= */
+
+:root {
+  font-family: "DM Sans", sans-serif;
+
+  color: #331a24;
+  background: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   HTML
+========================= */
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+/* =========================
+   BARRA DE ROLAGEM NO CELULAR
+========================= */
+@media (max-width: 800px) {
+  /* Esconde apenas o indicador visual; a rolagem por toque e trackpad continua ativa. */
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
+/* =========================
+   BODY
+========================= */
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: #ffffff;
+}
+
+/* =========================
+   LINKS E BOTÕES
+========================= */
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

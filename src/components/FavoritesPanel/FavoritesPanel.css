@@ -1,0 +1,29 @@
+/* Painel lateral da lista de favoritos, incluindo estado vazio e ações por produto. */
+.favorites-overlay { position: fixed; z-index: 1000; inset: 0; display: flex; justify-content: flex-end; background: rgba(35, 20, 25, 0.42); animation: favorites-fade-in 0.18s ease-out; }
+.favorites-panel { width: min(480px, 100%); height: 100%; display: flex; flex-direction: column; padding: 28px; overflow-y: auto; color: #331a24; background: #fffafa; box-shadow: -12px 0 40px rgba(35, 20, 25, 0.14); animation: favorites-slide-in 0.22s ease-out; }
+.favorites-panel-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid #f0dfe4; }
+.favorites-panel-header h2 { margin-top: 4px; font-family: "Playfair Display", serif; font-size: 30px; }
+.favorites-close-button { width: 40px; height: 40px; display: grid; place-items: center; color: #725c64; background: #fff0f3; border-radius: 50%; }
+.favorites-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; color: #8b7078; }
+.favorites-empty svg { color: #ff4d73; }
+.favorites-empty h3 { color: #331a24; font-size: 19px; }
+.favorites-empty p { max-width: 280px; font-size: 13px; line-height: 1.6; }
+.favorites-list { flex: 1; }
+.favorite-item { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid #f0dfe4; }
+.favorite-item > img { width: 86px; height: 86px; flex: 0 0 86px; object-fit: cover; border-radius: 14px; }
+.favorite-item-info { flex: 1; min-width: 0; }
+.favorite-item-info h3 { color: #4b3039; font-size: 14px; line-height: 1.4; }
+.favorite-item-info > p { margin: 4px 0 7px; color: #8b7078; font-size: 11px; line-height: 1.45; }
+.favorite-item-info > strong { color: #331a24; font-size: 13px; }
+.favorite-item-actions { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.favorite-add-button,
+.favorite-remove-button { min-height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.favorite-add-button { padding: 0 12px; color: #ffffff; background: #ff4d73; }
+.favorite-add-button:hover { background: #e93d63; }
+.favorite-remove-button { width: 34px; color: #9a7781; background: #fff0f3; }
+.favorite-remove-button:hover { color: #ffffff; background: #b65c6d; }
+.favorites-note { display: flex; align-items: center; gap: 7px; padding-top: 18px; color: #8b7078; font-size: 11px; line-height: 1.5; }
+.favorites-note svg { flex: 0 0 auto; color: #ff4d73; }
+@keyframes favorites-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes favorites-slide-in { from { transform: translateX(24px); } to { transform: translateX(0); } }
+@media (max-width: 600px) { .favorites-panel { padding: 22px 18px; } }

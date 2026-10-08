@@ -1,0 +1,406 @@
+.hero {
+  width: 100%;
+  background: #fbf8f5;
+  overflow: hidden;
+}
+
+.hero-container {
+  width: min(1180px, 90%);
+  min-height: 680px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+
+  gap: 80px;
+  padding: 80px 0 90px;
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.hero-content {
+  max-width: 520px;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 25px;
+
+  color: #9b5f69;
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+}
+
+.hero-label-dot {
+  width: 7px;
+  height: 7px;
+
+  background: #c76d7e;
+  border-radius: 50%;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+
+.hero-title {
+  margin: 0;
+
+  color: #332126;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(48px, 5vw, 72px);
+
+  line-height: 0.98;
+  letter-spacing: -2.5px;
+  font-weight: 600;
+}
+
+.hero-title em {
+  display: block;
+
+  color: #b65c6d;
+
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+}
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.hero-description {
+  max-width: 470px;
+
+  margin: 30px 0 34px;
+
+  color: #746268;
+
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.hero-button {
+  min-height: 50px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 21px;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+}
+
+.hero-button.primary {
+  color: #ffffff;
+  background: #b65c6d;
+
+  border-radius: 6px;
+}
+
+.hero-button.primary:hover {
+  background: #9f4d5e;
+}
+
+.hero-button.secondary {
+  color: #5a4048;
+  background: transparent;
+
+  border-bottom: 1px solid #cfa8af;
+
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.hero-button.secondary:hover {
+  color: #b65c6d;
+  border-color: #b65c6d;
+}
+
+/* =========================
+   NOTA
+========================= */
+
+.hero-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 27px;
+
+  color: #9a858b;
+
+  font-size: 11px;
+}
+
+.hero-note svg {
+  color: #b65c6d;
+}
+
+/* =========================
+   VISUAL
+========================= */
+
+.hero-visual {
+  position: relative;
+
+  min-height: 570px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   IMAGEM
+========================= */
+
+.hero-image-frame {
+  position: relative;
+  z-index: 1;
+
+  width: min(470px, 100%);
+  height: 530px;
+
+  overflow: hidden;
+
+  background: #eee4dc;
+
+  border-radius: 230px 230px 14px 14px;
+
+  box-shadow:
+    0 30px 70px rgba(58, 31, 38, 0.12);
+}
+
+.hero-image-frame::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(36, 20, 24, 0.12),
+    transparent 35%
+  );
+
+  pointer-events: none;
+}
+
+.hero-image-frame img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.hero-image-frame:hover img {
+  transform: scale(1.025);
+}
+
+/* =========================
+   IDENTIFICAÇÃO DO PRODUTO
+========================= */
+
+.hero-product-label {
+  position: absolute;
+
+  z-index: 3;
+
+  left: -35px;
+  bottom: 35px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 15px 18px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border: 1px solid rgba(190, 150, 158, 0.25);
+
+  box-shadow:
+    0 18px 40px rgba(55, 31, 37, 0.10);
+
+  backdrop-filter: blur(8px);
+}
+
+.hero-product-label > span {
+  color: #b65c6d;
+
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.hero-product-label div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hero-product-label strong {
+  color: #38262c;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hero-product-label small {
+  color: #917d83;
+
+  font-size: 9px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  /* Reduz o espaço acima do conteúdo para o hero não parecer vazio no preview estreito. */
+  .hero {
+    padding: 24px 0 40px;
+  }
+
+  .hero-container {
+    /* Remove a altura e o espaçamento de desktop para mostrar o conteúdo no primeiro recorte. */
+    min-height: 0;
+    align-content: start;
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+
+    padding: 28px 0 40px;
+  }
+
+  .hero-content {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .hero-label {
+    justify-content: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-note {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 500px;
+  }
+
+  .hero-product-label {
+    left: 5%;
+  }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+  /* Em celular, aproxima o título do cabeçalho sem apertar o restante da página. */
+  .hero {
+    padding: 16px 0 32px;
+  }
+
+  .hero-container {
+    width: 88%;
+
+    padding: 18px 0 32px;
+
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: 45px;
+    letter-spacing: -1.8px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+
+  .hero-button.secondary {
+    border-bottom: none;
+  }
+
+  .hero-visual {
+    min-height: 390px;
+  }
+
+  .hero-image-frame {
+    width: 85%;
+    height: 390px;
+
+    border-radius: 190px 190px 12px 12px;
+  }
+
+  .hero-product-label {
+    left: 0;
+    bottom: 15px;
+  }
+}

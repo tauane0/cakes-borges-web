@@ -1,0 +1,45 @@
+/* =======================
+   Botao flutuante de contato por WhatsApp
+======================= */
+.whatsapp-float {
+  position: fixed;
+  z-index: 900;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  color: #ffffff;
+  background: #168c54;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(18, 93, 57, 0.28);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.whatsapp-float:hover {
+  background: #117746;
+  transform: translateY(-2px);
+}
+
+.whatsapp-float:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .whatsapp-float {
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 54px;
+    height: 54px;
+    min-height: 54px;
+    padding: 0;
+  }
+
+  .whatsapp-float span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+}

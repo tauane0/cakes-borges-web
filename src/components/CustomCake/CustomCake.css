@@ -1,0 +1,252 @@
+﻿.custom-cake {
+  width: 100%;
+  padding: 88px 0;
+  background: #ffffff;
+}
+
+.cake-builder-container {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+}
+
+.cake-builder-heading {
+  max-width: 720px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.cake-builder-heading h2 {
+  margin-bottom: 12px;
+  color: #331a24;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.12;
+}
+
+.cake-builder-heading h2 span { color: #ff4d73; }
+.cake-builder-heading p { color: #725c64; font-size: 15px; line-height: 1.6; }
+
+.cake-builder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.8fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.cake-builder-main,
+.cake-builder-summary {
+  background: #ffffff;
+  border: 1px solid #f0dfe4;
+  border-radius: 24px;
+  box-shadow: 0 14px 36px rgba(51, 26, 36, 0.06);
+}
+
+.cake-builder-main { padding: 28px; }
+
+.cake-builder-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+  color: #8b7078;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cake-progress-track {
+  height: 7px;
+  flex: 1;
+  overflow: hidden;
+  background: #f8e7eb;
+  border-radius: 999px;
+}
+
+.cake-progress-track span {
+  display: block;
+  height: 100%;
+  background: #ff4d73;
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.cake-question { margin-bottom: 22px; }
+.cake-question-icon { color: #ff4d73; }
+.cake-question h3 { margin: 10px 0 6px; color: #331a24; font-size: 23px; }
+.cake-question p { color: #725c64; font-size: 13px; line-height: 1.55; }
+
+.cake-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cake-weight-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.cake-choice {
+  position: relative;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: #4b3039;
+  background: #fffaf9;
+  border: 1px solid #f0dfe4;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.cake-choice:hover { border-color: #ffb6c5; transform: translateY(-1px); }
+.cake-choice input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.cake-choice:focus-within { outline: 3px solid rgba(255, 77, 115, 0.25); outline-offset: 2px; }
+.cake-choice.is-selected { background: #fff0f3; border-color: #ff4d73; }
+.cake-choice.is-disabled { opacity: 0.45; cursor: not-allowed; }
+
+.cake-choice-check {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  display: grid;
+  place-items: center;
+  color: transparent;
+  background: #ffffff;
+  border: 1px solid #e8cfd6;
+  border-radius: 50%;
+}
+
+.cake-choice.is-selected .cake-choice-check { color: #ffffff; background: #ff4d73; border-color: #ff4d73; }
+.cake-choice-copy { display: flex; flex-direction: column; gap: 3px; }
+.cake-choice-copy strong { font-size: 13px; }
+.cake-choice-copy small { color: #8b7078; font-size: 11px; }
+
+.cake-notes-field { display: flex; flex-direction: column; gap: 8px; }
+.cake-notes-field label { color: #331a24; font-size: 13px; font-weight: 700; }
+.cake-notes-field label span { color: #8b7078; font-weight: 400; }
+.cake-notes-field textarea { width: 100%; min-height: 120px; padding: 13px 15px; color: #331a24; background: #fffaf9; border: 1px solid #f0dfe4; border-radius: 14px; resize: vertical; font: inherit; font-size: 13px; }
+.cake-notes-field textarea:focus { outline: 3px solid rgba(255, 77, 115, 0.2); border-color: #ff4d73; }
+.cake-notes-field small { color: #8b7078; font-size: 11px; }
+
+.cake-step-actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+.cake-back-button,
+.cake-next-button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 19px; border-radius: 999px; font-size: 13px; font-weight: 700; transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+.cake-back-button { color: #725c64; background: #fffaf9; border: 1px solid #f0dfe4; }
+.cake-back-button:hover:not(:disabled) { background: #f8e7eb; }
+.cake-back-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.cake-next-button { color: #ffffff; background: #ff4d73; }
+.cake-next-button:hover:not(:disabled) { background: #e93d63; transform: translateY(-1px); }
+.cake-next-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.cake-added-message { margin-top: 16px; color: #367451; font-size: 13px; font-weight: 700; }
+
+.cake-builder-summary { position: sticky; top: 150px; padding: 24px; }
+.cake-builder-summary h3 { margin: 0 0 18px; color: #331a24; font-size: 18px; }
+.cake-builder-summary dl { display: flex; flex-direction: column; gap: 13px; }
+.cake-builder-summary dl div { display: flex; flex-direction: column; gap: 4px; padding-bottom: 11px; border-bottom: 1px solid #f5e5e9; }
+.cake-builder-summary dt { color: #8b7078; font-size: 11px; }
+.cake-builder-summary dd { margin: 0; color: #4b3039; font-size: 13px; font-weight: 600; line-height: 1.45; }
+.cake-estimate { display: flex; flex-direction: column; gap: 5px; margin-top: 18px; }
+.cake-estimate span { color: #8b7078; font-size: 12px; }
+.cake-estimate strong { color: #331a24; font-size: 25px; }
+.cake-estimate-note { margin-top: 10px; color: #8b7078; font-size: 11px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .cake-builder-layout { grid-template-columns: minmax(0, 1fr); }
+  .cake-builder-summary { position: static; }
+}
+
+@media (max-width: 600px) {
+  /* Evita somar grandes margens entre esta vitrine e a seção seguinte no celular. */
+  .custom-cake { padding: 40px 0 28px; }
+  .cake-builder-main, .cake-builder-summary { padding: 20px; border-radius: 20px; }
+  .cake-weight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cake-choice-grid:not(.cake-weight-grid) { grid-template-columns: 1fr; }
+  .cake-step-actions { flex-direction: column-reverse; }
+  .cake-back-button, .cake-next-button { width: 100%; }
+}
+
+.cake-builder-intro {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 48px;
+  padding: 40px;
+  background: #fff0f3;
+  border-radius: 32px;
+}
+
+.cake-builder-intro-visual {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #ff4d73;
+  background: #ffe1e8;
+  border-radius: 26px;
+}
+
+/* =======================
+   Foto ilustrativa da etapa de apresentacao do bolo personalizado
+======================= */
+.cake-builder-intro-photo { width: min(100% - 36px, 420px); height: 260px; object-fit: cover; object-position: center; border-radius: 20px; box-shadow: 0 14px 32px rgba(51, 26, 36, 0.12); }
+.cake-builder-intro-visual span { color: #725c64; font-size: 13px; font-weight: 600; }
+.cake-builder-intro-content h2 { margin: 8px 0 14px; color: #331a24; font-family: "Playfair Display", serif; font-size: clamp(30px, 4vw, 44px); line-height: 1.12; }
+.cake-builder-intro-content h2 span { color: #ff4d73; }
+.cake-builder-intro-content p { margin-bottom: 20px; color: #725c64; font-size: 14px; line-height: 1.65; }
+.cake-builder-intro-content ul { display: grid; gap: 12px; margin: 0 0 26px; padding: 0; list-style: none; }
+.cake-builder-intro-content li { display: flex; align-items: center; gap: 9px; color: #4b3039; font-size: 13px; font-weight: 600; }
+.cake-builder-intro-content li svg { flex: 0 0 auto; color: #ff4d73; }
+.cake-start-button { width: fit-content; }
+.cake-return-button { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 22px; padding: 9px 0; color: #725c64; background: transparent; font-size: 12px; font-weight: 700; }
+.cake-return-button:hover { color: #ff4d73; }
+
+/* Confirmação ocupa o lugar do questionário e mantém o foco na mensagem final. */
+.cake-success-screen {
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 44px;
+  text-align: center;
+  background: #fff0f3;
+  border: 1px solid #f0dfe4;
+  border-radius: 32px;
+}
+
+.cake-success-icon {
+  width: 78px;
+  height: 78px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: #478b68;
+  border-radius: 50%;
+}
+
+.cake-success-screen h2 {
+  max-width: 620px;
+  margin: 0;
+  color: #331a24;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(27px, 4vw, 40px);
+  line-height: 1.2;
+}
+
+.cake-success-back { margin-top: 4px; }
+
+@media (max-width: 800px) {
+  .cake-builder-intro { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+  .cake-builder-intro-visual { min-height: 230px; }
+}
+
+@media (max-width: 600px) {
+  .cake-builder-intro { gap: 22px; padding: 18px; border-radius: 22px; }
+  .cake-builder-intro-content { text-align: center; }
+  .cake-builder-intro-content ul { text-align: left; }
+  .cake-start-button { width: 100%; }
+  .cake-success-screen { min-height: 340px; gap: 17px; padding: 28px 20px; border-radius: 22px; }
+  .cake-success-back { width: 100%; }
+}

@@ -1,0 +1,109 @@
+/* Painel de carrinho, formulário de pedido demonstrativo e estados de confirmação. */
+.cart-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(35, 20, 25, 0.42);
+  animation: cart-fade-in 0.18s ease-out;
+}
+
+/* =======================
+   Estrutura do painel e rolagem independente dos produtos
+======================= */
+.cart-panel {
+  width: min(460px, 100%);
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  overflow: hidden;
+  color: #331a24;
+  background: #fffafa;
+  box-shadow: -12px 0 40px rgba(35, 20, 25, 0.14);
+  animation: cart-slide-in 0.22s ease-out;
+}
+
+.cart-panel-header { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid #f0dfe4; }
+.cart-panel-header h2 { margin-top: 4px; font-family: "Playfair Display", serif; font-size: 30px; }
+.cart-close-button { width: 40px; height: 40px; display: grid; place-items: center; color: #725c64; background: #fff0f3; border-radius: 50%; }
+.cart-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; color: #8b7078; }
+.cart-empty svg { color: #ff4d73; }
+.cart-empty h3 { color: #331a24; font-size: 19px; }
+.cart-empty p { max-width: 260px; font-size: 13px; line-height: 1.6; }
+.cart-items { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.cart-item { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid #f0dfe4; }
+.cart-item > img { width: 76px; height: 76px; flex: 0 0 76px; object-fit: cover; border-radius: 14px; }
+.cart-item-details { flex: 1; min-width: 0; }
+.cart-item-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.cart-item-title h3 { color: #4b3039; font-size: 14px; line-height: 1.4; }
+.cart-item-title button { flex: 0 0 auto; padding: 2px; color: #9a7781; background: transparent; }
+.cart-item-configuration { margin-top: 5px; color: #8b7078; font-size: 11px; line-height: 1.5; }
+.cart-item-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+.cart-item-footer > strong { color: #331a24; font-size: 13px; }
+.cart-quantity { display: flex; align-items: center; gap: 10px; padding: 4px 7px; border: 1px solid #f0dfe4; border-radius: 999px; }
+.cart-quantity button { width: 24px; height: 24px; display: grid; place-items: center; color: #725c64; background: transparent; border-radius: 50%; touch-action: manipulation; }
+.cart-quantity button:hover { color: #ff4d73; background: #fff0f3; }
+.cart-quantity button:focus-visible { outline: 2px solid #ff7f99; outline-offset: 2px; }
+.cart-quantity span { min-width: 12px; text-align: center; font-size: 12px; font-weight: 700; }
+/* =======================
+   Resumo e botao de finalizacao sempre visiveis
+======================= */
+.cart-footer { flex: 0 0 auto; padding-top: 14px; border-top: 1px solid #f0dfe4; background: #fffafa; }
+.cart-total { display: flex; justify-content: space-between; gap: 12px; color: #4b3039; font-size: 14px; }
+.cart-total strong { text-align: right; color: #331a24; }
+.cart-demo-note { margin-top: 10px; color: #8b7078; font-size: 11px; line-height: 1.5; }
+.cart-begin-checkout { width: 100%; margin-top: 14px; }
+.cart-checkout-form { display: flex; flex: 1; min-height: 0; flex-direction: column; gap: 16px; padding-top: 20px; overflow-y: auto; overscroll-behavior: contain; }
+/* =======================
+   Campos de endereco e feedback do checkout autenticado
+======================= */
+.cart-address-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cart-address-fields .cart-form-field:nth-child(2), .cart-address-fields .cart-form-field:nth-child(4),
+.cart-address-fields .cart-form-field:nth-child(5), .cart-address-fields .cart-form-field:nth-child(6),
+.cart-address-fields .cart-form-field:nth-child(8) { grid-column: 1 / -1; }
+.cart-error { padding: 10px 12px; color: #a32d48; background: #fff0f3; border-radius: 10px; font-size: 12px; line-height: 1.5; }
+.cart-primary-button:disabled { cursor: wait; opacity: .7; }
+.cart-checkout-intro { color: #725c64; font-size: 13px; line-height: 1.55; }
+.cart-form-field { display: flex; flex-direction: column; gap: 7px; color: #4b3039; font-size: 12px; font-weight: 700; }
+.cart-form-field input,
+.cart-form-field textarea { width: 100%; min-height: 44px; padding: 11px 13px; color: #331a24; background: #ffffff; border: 1px solid #ead8de; border-radius: 12px; font: inherit; font-size: 13px; }
+.cart-form-field textarea { resize: vertical; }
+.cart-form-field input:focus,
+.cart-form-field textarea:focus { outline: 3px solid rgba(255, 77, 115, 0.16); border-color: #ff7f99; }
+.cart-delivery-options { display: grid; gap: 11px; margin: 0; padding: 13px 14px; border: 1px solid #f0dfe4; border-radius: 14px; }
+.cart-delivery-options legend { padding: 0 5px; color: #4b3039; font-size: 12px; font-weight: 700; }
+.cart-delivery-options label { display: flex; align-items: center; gap: 9px; color: #725c64; font-size: 12px; }
+.cart-delivery-options input { accent-color: #ff4d73; }
+.cart-checkout-summary { display: flex; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid #f0dfe4; color: #725c64; font-size: 13px; }
+.cart-checkout-summary strong { color: #331a24; text-align: right; }
+.cart-checkout-actions { display: grid; gap: 10px; margin-top: auto; padding-top: 12px; }
+.cart-primary-button,
+.cart-secondary-button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.cart-primary-button { color: #ffffff; background: #ff4d73; }
+.cart-primary-button:hover { background: #e93d63; }
+.cart-secondary-button { color: #725c64; background: #fff0f3; }
+.cart-secondary-button:hover { background: #ffe1e8; }
+.cart-order-success { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; }
+.cart-success-icon { width: 76px; height: 76px; display: grid; place-items: center; color: #ffffff; background: #478b68; border-radius: 50%; }
+.cart-order-success h3 { color: #331a24; font-family: "Playfair Display", serif; font-size: 25px; }
+.cart-order-success p { max-width: 300px; color: #725c64; font-size: 13px; line-height: 1.6; }
+.cart-order-success .cart-primary-button { min-width: 180px; margin-top: 6px; }
+/* =======================
+   Acao para continuar o atendimento do pedido no WhatsApp
+======================= */
+.cart-whatsapp-button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; color: #ffffff; background: #168c54; border-radius: 999px; font-size: 13px; font-weight: 700; }
+.cart-whatsapp-button:hover { background: #117746; }
+.cart-whatsapp-button:focus-visible { outline: 3px solid rgba(22, 140, 84, 0.28); outline-offset: 3px; }
+
+@keyframes cart-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cart-slide-in { from { transform: translateX(24px); } to { transform: translateX(0); } }
+
+@media (max-width: 600px) {
+  .cart-panel { padding: 22px 18px; }
+  .cart-address-fields { grid-template-columns: 1fr; }
+  .cart-address-fields .cart-form-field { grid-column: 1; }
+}

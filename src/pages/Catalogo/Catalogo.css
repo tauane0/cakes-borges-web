@@ -1,0 +1,30 @@
+﻿.catalog-section {
+  width: 100%;
+  padding: 80px 0 100px;
+  background: #fffaf9;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* =======================
+   Mensagens de carregamento do catálogo
+======================= */
+.catalog-state { grid-column: 1 / -1; margin: 0; color: #755b64; text-align: center; }
+
+/* Complementos mantém o rosa claro que combina com a faixa de benefícios. */
+.catalog-section-complementos { background: #fff4f6; }
+
+@media (max-width: 760px) {
+  .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .catalog-section { padding: 66px 0 80px; }
+}
+
+@media (max-width: 520px) {
+  .catalog-grid { grid-template-columns: 1fr; }
+  .catalog-section { padding: 54px 0 68px; }
+}

@@ -1,0 +1,413 @@
+/* =========================
+   PÁGINA DE BOLOS
+========================= */
+
+.bolos-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.bolos-hero {
+  width: 100%;
+  padding: 90px 0 75px;
+
+  background: #fff0f3;
+
+  text-align: center;
+}
+
+.bolos-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.bolos-hero .bolos-container {
+  max-width: 850px;
+}
+
+.bolos-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 15px;
+
+  color: #ff4d73;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+.bolos-hero h1 {
+  margin-bottom: 18px;
+
+  color: #331a24;
+
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.1;
+}
+
+.bolos-hero h1 span {
+  color: #ff4d73;
+}
+
+.bolos-hero p {
+  max-width: 650px;
+  margin: 0 auto;
+
+  color: #725c64;
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+.bolos-catalog {
+  width: 100%;
+  padding: 80px 0 110px;
+
+  background: #ffffff;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.bolos-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 40px;
+}
+
+.bolos-header h2 {
+  margin-top: 8px;
+
+  color: #331a24;
+
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.bolos-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  padding: 9px 16px;
+
+  color: #725c64;
+  background: #fffaf9;
+
+  border: 1px solid #f0dfe4;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.filter-button:hover {
+  color: #ff4d73;
+  border-color: #ffb6c5;
+}
+
+.filter-button.active {
+  color: #ffffff;
+  background: #ff4d73;
+  border-color: #ff4d73;
+}
+
+/* =========================
+   GRID DE PRODUTOS
+========================= */
+
+.bolos-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.bolo-product-card {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #f3e3e7;
+  border-radius: 24px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.bolo-product-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 18px 40px rgba(51, 26, 36, 0.09);
+}
+
+/* =========================
+   FAVORITO
+========================= */
+
+.bolo-favorite {
+  position: absolute;
+  z-index: 2;
+
+  top: 16px;
+  right: 16px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #725c64;
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  box-shadow: 0 5px 15px rgba(51, 26, 36, 0.1);
+
+  font-size: 21px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.bolo-favorite:hover {
+  color: #ff4d73;
+
+  transform: scale(1.08);
+}
+
+/* =========================
+   IMAGEM
+========================= */
+
+.bolo-product-image {
+  width: 100%;
+  height: 260px;
+
+  overflow: hidden;
+
+  background: #fff0f3;
+}
+
+.bolo-product-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.bolo-product-card:hover .bolo-product-image img {
+  transform: scale(1.04);
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.bolo-product-content {
+  padding: 20px;
+}
+
+.bolo-product-content h3 {
+  margin-bottom: 8px;
+
+  color: #331a24;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bolo-description {
+  min-height: 42px;
+  margin-bottom: 13px;
+
+  color: #8c777f;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================
+   AVALIAÇÃO
+========================= */
+
+.bolo-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-bottom: 18px;
+
+  font-size: 12px;
+}
+
+.bolo-rating span {
+  color: #f3b83f;
+
+  font-size: 15px;
+}
+
+.bolo-rating strong {
+  color: #4b3039;
+}
+
+.bolo-rating small {
+  color: #9b888f;
+}
+
+/* =========================
+   PREÇO + CARRINHO
+========================= */
+
+.bolo-product-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.bolo-price {
+  color: #331a24;
+
+  font-size: 18px;
+}
+
+.bolo-cart-button {
+  min-height: 40px;
+
+  padding: 0 17px;
+
+  color: #ffffff;
+  background: #ff4d73;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.bolo-cart-button:hover {
+  background: #e93d63;
+
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .bolos-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .bolos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+  .bolos-hero {
+    padding: 65px 0 55px;
+  }
+
+  .bolos-catalog {
+    padding: 60px 0 75px;
+  }
+
+  .bolos-header {
+    margin-bottom: 30px;
+  }
+
+  .bolos-header h2 {
+    font-size: 29px;
+  }
+
+  .bolos-filter {
+    width: 100%;
+  }
+
+  .filter-button {
+    font-size: 11px;
+  }
+
+  .bolos-grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .bolo-product-image {
+    height: 240px;
+  }
+}
+
+/* =========================
+   CELULAR PEQUENO
+========================= */
+
+@media (max-width: 400px) {
+  .bolo-product-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .bolo-cart-button {
+    width: 100%;
+  }
+}

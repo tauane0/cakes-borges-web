@@ -1,0 +1,168 @@
+
+/* .account-overlay faz que o fundo do modal seja semi-transparente */
+/* .account-modal define o estilo do modal em si */
+/* .account-welcome é a coluna da esquerda, com o fundo colorido e o texto de boas-vindas */
+/* .account-form-area é a coluna da direita, com o formulário de login/cadastro */
+/* .account-close é o botão de fechar o modal, posicionado no canto superior direito da .account-modal */
+/* .account-tabs são os botões de alternar entre login e cadastro */
+/* .account-field é cada campo do formulário, com o label e o input */
+/* .account-input-wrap é o contêiner do input, com ícone e borda */
+/* .account-primary-button é o botão principal do formulário */
+/* .account-success é a tela de sucesso após o login/cadastro */
+/* .account-error é a mensagem de erro do formulário */
+/* .account-field é cada campo do formulário, com o label e o input */
+/* .accoount-brand-icon é o ícone da marca */
+/* .account-eyebrow é o texto acima do título */
+/* .account-welcome h2 é o título do modal */
+/* .account-welcome > p é o parágrafo de descrição do modal */
+/* .account-decoration é o elemento decorativo no fundo do modal */
+/* .account-form-area é a coluna da direita, com o formulário de login/cadastro */
+/* .account-heading é o cabeçalho do formulário */
+/* .account-description é o parágrafo de descrição do formulário */
+/* .account-demo é a área de demonstração */
+
+/*------------------------------------------------------------
+ Modal usa duas colunas no desktop e vira uma coluna em telas estreitas.
+ -----------------------------------------------------------------*/
+/* =======================
+   Overlay e estrutura do modal de conta
+======================= */
+.account-overlay { position: fixed; z-index: 1100; inset: 0; display: grid; place-items: center; padding: 24px; overflow-y: auto; background: rgba(35, 20, 25, 0.52); animation: account-fade-in 0.18s ease-out; }
+.account-modal { position: relative; width: min(900px, 100%); min-height: 570px; display: grid; grid-template-columns: 0.8fr 1.2fr; overflow: hidden; background: #fffafa; border: 1px solid #f4e1e6; border-radius: 30px; box-shadow: 0 28px 90px rgba(35, 20, 25, 0.24); animation: account-rise-in 0.22s ease-out; }
+.account-close { position: absolute; z-index: 2; top: 18px; right: 18px; width: 40px; height: 40px; display: grid; place-items: center; color: #725c64; background: rgba(255, 255, 255, 0.8); border: 1px solid #f0dfe4; border-radius: 50%; }
+.account-close:hover { color: #ffffff; background: #ff4d73; }
+.account-welcome { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 52px 42px; overflow: hidden; color: #ffffff; background: linear-gradient(145deg, #b65c6d 0%, #8f4055 100%); }
+.account-brand-icon { width: 62px; height: 62px; display: grid; place-items: center; margin-bottom: 24px; color: #fff; background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 20px; }
+.account-eyebrow { margin-bottom: 16px; font-family: "Playfair Display", serif; font-size: 18px; font-weight: 700; }
+.account-eyebrow em { color: #ffd2dc; font-family: "Pacifico", cursive; font-size: 17px; font-style: normal; }
+.account-welcome h2 { position: relative; z-index: 1; max-width: 310px; margin-bottom: 14px; font-family: "Playfair Display", serif; font-size: clamp(30px, 3.8vw, 42px); line-height: 1.13; }
+.account-welcome > p { position: relative; z-index: 1; max-width: 310px; color: rgba(255, 255, 255, 0.82); font-size: 13px; line-height: 1.7; }
+.account-decoration { position: absolute; right: -90px; bottom: -120px; width: 300px; height: 300px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; }
+.account-decoration span { position: absolute; inset: 26px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; }
+.account-decoration span:nth-child(2) { inset: 54px; }
+.account-decoration span:nth-child(3) { inset: 82px; background: rgba(255,255,255,.06); }
+.account-form-area { display: flex; flex-direction: column; justify-content: center; padding: 56px clamp(28px, 6vw, 66px); }
+.account-heading { margin-bottom: 22px; }
+.account-heading h1,
+.account-success h1 { margin: 7px 0 8px; color: #331a24; font-family: "Playfair Display", serif; font-size: clamp(27px, 3vw, 35px); line-height: 1.15; }
+.account-heading > p,
+.account-success > p { color: #806b72; font-size: 13px; line-height: 1.6; }
+.account-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 21px; padding: 5px; background: #fff0f3; border-radius: 999px; }
+.account-tabs button { min-height: 38px; color: #806b72; background: transparent; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.account-tabs button.is-active { color: #ffffff; background: #ff4d73; box-shadow: 0 4px 10px rgba(255, 77, 115, 0.2); }
+.account-form { display: flex; flex-direction: column; gap: 14px; }
+.account-field { display: flex; flex-direction: column; gap: 7px; color: #4b3039; font-size: 12px; font-weight: 700; }
+.account-input-wrap { min-height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 13px; color: #a2828b; background: #ffffff; border: 1px solid #ead8de; border-radius: 13px; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.account-input-wrap:focus-within { border-color: #ff7f99; box-shadow: 0 0 0 3px rgba(255, 77, 115, 0.12); }
+.account-input-wrap svg { flex: 0 0 auto; }
+.account-input-wrap input { width: 100%; min-width: 0; height: 44px; color: #331a24; background: transparent; border: 0; outline: 0; font: inherit; font-size: 13px; }
+.account-input-wrap input::placeholder { color: #b29da3; font-weight: 400; }
+/* =======================
+   Exemplos de preenchimento e controle acessivel para revelar senhas
+======================= */
+.account-visibility-toggle { width: 32px; height: 32px; flex: 0 0 32px; display: grid; place-items: center; color: #8b7078; background: transparent; border-radius: 50%; }
+.account-visibility-toggle:hover,
+.account-visibility-toggle:focus-visible { color: #b65c6d; background: #fff0f3; }
+.account-visibility-toggle:focus-visible { outline: 2px solid #ff7f99; outline-offset: 1px; }
+.account-primary-button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; margin-top: 4px; padding: 0 20px; color: #ffffff; background: #ff4d73; border-radius: 999px; font-size: 13px; font-weight: 700; transition: background 0.2s ease, transform 0.2s ease; }
+.account-primary-button:hover { background: #e93d63; transform: translateY(-1px); }
+.account-demo-note { margin-top: 18px; color: #9a858b; font-size: 10px; line-height: 1.5; text-align: center; }
+.account-error { color: #b43c54; font-size: 12px; line-height: 1.5; }
+/* =======================
+   Mensagens e estado de envio da autenticacao real
+======================= */
+.account-auth-message { color: #36734f; font-size: 12px; line-height: 1.5; }
+.account-resend-button { align-self: center; padding: 4px 8px; color: #a3435b; background: transparent; font-size: 12px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.account-resend-button:disabled { cursor: wait; opacity: .62; }
+.account-primary-button:disabled { cursor: wait; opacity: .7; }
+.account-order-history { width: 100%; max-width: 390px; margin-top: 22px; text-align: left; }
+.account-order-history h2 { margin-bottom: 8px; color: #4b3039; font-size: 15px; }
+.account-order-history > p { color: #806b72; font-size: 12px; }
+.account-order-row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0dfe4; color: #4b3039; font-size: 11px; }
+.account-order-row span { display: grid; gap: 4px; }
+.account-order-row small { color: #806b72; }
+.account-success { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.account-success > svg { margin-bottom: 15px; color: #478b68; }
+.account-success h1 { max-width: 360px; }
+.account-success > p { max-width: 350px; }
+.account-success .account-primary-button { min-width: 180px; margin-top: 22px; }
+
+/* =======================
+   Acompanhamento e gestão segura dos pedidos
+======================= */
+.account-order-history { max-height: min(44vh, 390px); overflow-y: auto; overscroll-behavior: contain; }
+.account-orders-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.account-orders-heading h2 { margin: 0; }
+.account-orders-heading > button { padding: 7px 11px; color: #a3435b; background: #fff0f3; border-radius: 999px; font-size: 10px; font-weight: 700; }
+.account-orders-heading > button:disabled { cursor: wait; opacity: .65; }
+.account-orders-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 10px; padding: 4px; background: #fff0f3; border-radius: 999px; }
+.account-orders-tabs button { min-height: 32px; color: #806b72; background: transparent; border-radius: 999px; font-size: 10px; font-weight: 700; }
+.account-orders-tabs button.is-active { color: #fff; background: #ff4d73; }
+.account-order-card { margin: 8px 0; padding: 12px; text-align: left; background: #fffaf9; border: 1px solid #f0dfe4; border-radius: 14px; }
+.account-order-card-heading { display: flex; justify-content: space-between; gap: 8px; color: #331a24; font-size: 11px; }
+.account-order-card > p { margin-top: 7px; color: #725c64; font-size: 11px; line-height: 1.45; }
+.account-order-card > small { display: block; margin-top: 5px; color: #8b7078; font-size: 10px; line-height: 1.4; }
+/* Atalho de pagamento aparece apenas enquanto o pedido aguarda o Pix. */
+.account-order-whatsapp { width: fit-content; min-height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; margin-top: 10px; padding: 8px 11px; color: #fff; background: #168c54; border-radius: 999px; font-size: 10px; font-weight: 700; text-decoration: none; }
+.account-order-whatsapp:hover { background: #117746; }
+.account-order-whatsapp:focus-visible { outline: 3px solid rgba(22, 140, 84, .28); outline-offset: 3px; }
+.account-order-timeline { display: grid; gap: 8px; margin: 10px 0 0; padding: 9px 0 0 14px; border-top: 1px solid #f0dfe4; }
+.account-order-timeline li { padding-left: 2px; color: #c76d7e; }
+.account-order-timeline li span { display: flex; justify-content: space-between; gap: 8px; color: #4b3039; font-size: 10px; }
+.account-order-timeline li small { display: block; margin-top: 3px; color: #806b72; font-size: 9px; line-height: 1.4; }
+.account-order-timeline time { display: block; margin-top: 2px; color: #9b888f; font-size: 9px; }
+.account-manager-status { font-weight: 700; }
+.account-manager-note { margin: 4px 0 8px; color: #806b72; font-size: 10px; line-height: 1.45; text-align: left; }
+.account-manager-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.account-manager-actions button { padding: 7px 9px; color: #fff; background: #b65c6d; border-radius: 999px; font-size: 9px; font-weight: 700; }
+.account-manager-actions button.is-cancel { color: #a3435b; background: #fff0f3; }
+.account-manager-actions button:disabled { cursor: wait; opacity: .65; }
+
+/*-------------------------------------------------------
+ Cadastro tem mais campos; reduzimos alturas e intervalos só nesse modo.
+ ---------------------------------------------------------*/
+/* =======================
+   Enquadramento do cadastro com cinco campos e controles de senha
+======================= */
+.account-modal.is-registering { min-height: 620px; }
+.account-modal.is-registering .account-welcome { padding-top: 38px; padding-bottom: 38px; }
+.account-modal.is-registering .account-brand-icon { width: 54px; height: 54px; margin-bottom: 17px; }
+.account-modal.is-registering .account-welcome h2 { font-size: clamp(28px, 3.4vw, 37px); }
+.account-modal.is-registering .account-form-area { padding-top: 38px; padding-bottom: 38px; }
+.account-modal.is-registering .account-heading { margin-bottom: 15px; }
+.account-modal.is-registering .account-tabs { margin-bottom: 15px; }
+.account-modal.is-registering .account-form { gap: 10px; }
+.account-modal.is-registering .account-field { gap: 5px; }
+.account-modal.is-registering .account-input-wrap { min-height: 42px; }
+.account-modal.is-registering .account-input-wrap input { height: 40px; }
+.account-modal.is-registering .account-demo-note { margin-top: 12px; }
+@keyframes account-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes account-rise-in { from { opacity: 0; transform: translateY(12px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 680px) {
+  .account-overlay { align-items: start; padding: 14px; }
+  .account-modal { width: min(480px, 100%); min-height: auto; grid-template-columns: 1fr; margin: auto; border-radius: 24px; }
+  .account-welcome { min-height: 180px; padding: 24px 26px; }
+  .account-brand-icon { width: 44px; height: 44px; margin-bottom: 12px; border-radius: 14px; }
+  .account-brand-icon svg { width: 25px; }
+  .account-eyebrow { margin-bottom: 7px; font-size: 15px; }
+  .account-welcome h2 { max-width: 320px; margin-bottom: 0; font-size: 27px; }
+  .account-welcome > p { display: none; }
+  .account-decoration { right: -125px; bottom: -200px; }
+  .account-form-area { padding: 28px 24px 24px; }
+  .account-heading { margin-bottom: 16px; }
+  .account-modal.is-registering .account-welcome { min-height: 156px; padding-top: 18px; padding-bottom: 18px; }
+  .account-modal.is-registering .account-brand-icon { width: 38px; height: 38px; margin-bottom: 8px; }
+  .account-modal.is-registering .account-brand-icon svg { width: 22px; }
+  .account-modal.is-registering .account-eyebrow { margin-bottom: 5px; }
+  .account-modal.is-registering .account-welcome h2 { font-size: 24px; }
+  .account-modal.is-registering .account-form-area { padding-top: 20px; padding-bottom: 20px; }
+  .account-modal.is-registering { min-height: 0; }
+}
+
+@media (max-width: 380px) {
+  .account-form-area { padding-right: 18px; padding-left: 18px; }
+  .account-welcome { padding-right: 20px; padding-left: 20px; }
+}
+
+/* .account-modal.is-registering é para o modo de registro */
