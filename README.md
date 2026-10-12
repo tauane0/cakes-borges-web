@@ -18,6 +18,7 @@ Os produtos, precos e avaliacoes sao dados demonstrativos. O projeto nao cobra P
 - Frontend: React, Vite e `@supabase/supabase-js` para autenticacao.
 - Backend: Node.js, Express e `pg`.
 - Banco: PostgreSQL no Supabase, com migracoes em `supabase/migrations/`.
+- Uso de IA: usei uma ferramenta de IA como apoio para estudar e implementar algumas partes mais complexas do projeto. As sugestões foram revisadas e adaptadas durante o desenvolvimento.
 
 ## Requisitos
 
